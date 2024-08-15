@@ -1,16 +1,21 @@
+
+# setting up the proper environment and screen 
 screen -r -d Basecalling$
 conda activate amplicon_sorter
 cd /mnt/ebe/AmpliconSequencingONT/
 
+# instroducing the necessary information
+
 read -p "Please enter the name of the experiment (be sure to tipe well):" filename
-
 mkdir "$filename"
-
 mkdir "$filename"/fast5
+
+# retrieveing the data from the sequencer 
 
 echo "##########################################"
 echo "### Downloading the files              ###"
 echo "##########################################"
+
 password="026502925"
 read -p "Where the sequencing was done ? (p2-post/min-post)" answer
 if [[ "$answer" == "p2-post" ]]; then
@@ -26,6 +31,8 @@ elif [[ "$answer" == "mini-post" ]]; then
 else
     echo "Invalid input. Please enter 'p2-post' or 'mini-post'."
 fi
+
+# Basecalling and barcoding of the data set 
 
 echo "##########################################"
 echo "#### Basecalling from the fast5 folder ###"
@@ -51,10 +58,12 @@ cd fastq_guppy_6.3.8_8.2_barcodes
 
 (for i in {1..96}; do cat $(printf 'barcode%02d\n' $i)/*.fastq > $(printf 'barcode%02d\n' $i)/$(printf 'barcode%02d\n' $i).fastq; python3 amplicon_sorter.py -i $(printf 'barcode%02d\n' $i)/$(printf 'barcode%02d\n' $i).fastq -ho -np 40 -o $(printf 'barcode%02d\n' $i)/$(printf 'barcode%02d\n' $i); python3 amplicon_sorter.py -i $(printf 'barcode%02d\n' $i)/$(printf 'barcode%02d\n' $i).fastq -min 200 -np 40 -o $(printf 'barcode%02d\n' $i)/$(printf 'barcode%02d\n' $i); rm $(printf 'barcode%02d\n' $i)/$(printf 'barcode%02d\n' $i).fastq; done) & disown
 
+# doing the Hairsplitter if necessar 
+
 read -p "Do you want use hairsplitter? (yes/no): " answer
 
 if [[ "$answer" == "yes" ]]; then
-    # Put your command here
+    
     echo "Executing the command..."
     echo "##########################################"
     echo "#### Using hairsplitter                ###"
