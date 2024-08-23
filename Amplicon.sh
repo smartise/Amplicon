@@ -7,8 +7,8 @@ cd /mnt/ebe/AmpliconSequencingONT/
 # instroducing the necessary information
 
 read -p "Please enter the name of the experiment (be sure to tipe well):" filename
-mkdir "$filename"
-mkdir "$filename"/fast5
+mkdir $filename
+mkdir $filename/fast5
 
 # retrieveing the data from the sequencer 
 
@@ -55,7 +55,7 @@ echo "##########################################"
 echo "#### Basecalling from the fast5 folder ###"
 echo "##########################################"
 
-cd "$filename"
+cd $filename
 
 module load guppy/gpu-6.3.8_linux64
 
