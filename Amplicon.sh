@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # setting up the proper environment and screen 
 screen -r -d Basecalling$
