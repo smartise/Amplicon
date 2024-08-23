@@ -28,15 +28,26 @@ select choice in "${options[@]}"; do
         "p2-post")
             echo "You selected p2-post"
             echo "downloading from P2 solo post" 
-            sshpass -p "$password" scp "promethion@10.141.4.16/var/lib/minknow/data/$filename/*/*/fast5_fail/*.fast5" "/$filename/fast5"
-            sshpass -p "$password" scp "promethion@10.141.4.16/var/lib/minknow/data/$filename/*/*/fast5_pass/*.fast5" "/$filename/fast5"
+            sshpass -p "$password" ssh promethion@10.141.4.16 "find /var/lib/minknow/data/$filename -type f -path '*/fast5_fail/*.fast5'" | while read -r file; do
+                sshpass -p "$password" scp "promethion@10.141.4.16:$file" "/$filename/fast5"
+            done
+
+            sshpass -p "$password" ssh promethion@10.141.4.16 "find /var/lib/minknow/data/$filename -type f -path '*/fast5_pass/*.fast5'" | while read -r file; do
+                sshpass -p "$password" scp "promethion@10.141.4.16:$file" "/$filename/fast5"
+            done
             break
             ;;
         "min-post")
             echo "You selected min-post"
             echo "downloading from mini-post"
-            sshpass -p "$password" scp "minit@10.141.4.15/data/$filename/*/*/fast5_fail/*.fast5" "/$filename/fast5"
-            sshpass -p "$password" scp "minit@10.141.4.15/data/$filename/*/*/fast5_pass/*.fast5" "/$filename/fast5"
+            sshpass -p "$password" ssh minit@10.141.4.15 "find /data/$filename -type f -path '*/fast5_fail/*.fast5'" | while read -r file; do
+                sshpass -p "$password" scp "minit@10.141.4.15:$file" "/$filename/fast5"
+            done
+
+            sshpass -p "$password" ssh minit@10.141.4.15 "find /data/$filename -type f -path '*/fast5_pass/*.fast5'" | while read -r file; do
+                sshpass -p "$password" scp "minit@10.141.4.15:$file" "/$filename/fast5"
+            done
+            
             break
             ;;
         "Quit")
