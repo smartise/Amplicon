@@ -1,7 +1,7 @@
 
 #!/bin/bash
 
-read -p "Please enter the name of the experiment (be sure to tipe well):" filename
+filename=$(ls -lt --time=ctime "/data" | grep '^d' | head -n 1 | awk '{print $NF}')
 
 ssh "ocol0007@ebe-gpu01.hpda.ulb.ac.be" "mkdir -p '/mnt/ebe/AmpliconSequencingONT/$filename/fast5'"
 
