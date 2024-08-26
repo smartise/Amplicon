@@ -8,9 +8,6 @@ bot_token="7502468804:AAFZwmUtgoRW7oowd3cEKikPQ5M2QTIckLQ"
 chat_id="7541017945"
 
 # instroducing the necessary information
-screen -r -d Basecalling$
-conda activate amplicon_sorter
-
 echo "##########################################"
 echo "#### Basecalling from the fast5 folder ###"
 echo "##########################################"
