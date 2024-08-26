@@ -31,7 +31,7 @@ curl -s -X POST "https://api.telegram.org/bot$bot_token/sendMessage" \
      -d chat_id="$chat_id" \
      -d text="Basecalling done, staring the demultiplexing"
 
-guppy_barcoder -i /mnt/ebe/AmpliconSequencingONT/$filenamefastq_guppy_6.3.8_8.2/pass/ -s /mnt/ebe/AmpliconSequencingONT/$filename/fastq_guppy_6.3.8_8.2_barcodes
+guppy_barcoder -i /mnt/ebe/AmpliconSequencingONT/$filename/fastq_guppy_6.3.8_8.2/pass/ -s /mnt/ebe/AmpliconSequencingONT/$filename/fastq_guppy_6.3.8_8.2_barcodes
 
 echo "##########################################"
 echo "#### Using amplicon sorter             ###"
