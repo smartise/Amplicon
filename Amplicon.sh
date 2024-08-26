@@ -1,5 +1,7 @@
 #!/bin/bash
-filename=$1 
+echo "Please enter the experiment name:"
+read filename
+echo "The experiment is, $filename!"
 
 #notification ID 
 bot_token="7502468804:AAFZwmUtgoRW7oowd3cEKikPQ5M2QTIckLQ"
