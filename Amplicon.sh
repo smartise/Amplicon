@@ -1,5 +1,5 @@
 #!/bin/bash
-$filename=$(ls -lt "/mnt/ebe/AmpliconSequencingONT" | grep '^d' | head -n 1 | awk '{print $9}')
+filename=$(ls -lt "/mnt/ebe/AmpliconSequencingONT" | grep '^d' | head -n 1 | awk '{print $9}')
 
 echo "The experiment is, $filename!"
 
