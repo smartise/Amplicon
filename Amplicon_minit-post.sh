@@ -3,7 +3,7 @@
 
 echo "Please enter the experiment name:"
 read name
-echo "The experiment is, $name!"
+echo "The experiment is, $filename!"
 
 ssh "ocol0007@ebe-gpu01.hpda.ulb.ac.be" "mkdir -p '/mnt/ebe/AmpliconSequencingONT/$filename/fast5'"
 
