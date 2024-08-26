@@ -31,7 +31,7 @@ curl -s -X POST "https://api.telegram.org/bot$bot_token/sendMessage" \
      -d chat_id="$chat_id" \
      -d text="Basecalling done, staring the demultiplexing"
 
-guppy_barcoder -i fastq_guppy_6.3.8_8.2/pass/ -s fastq_guppy_6.3.8_8.2_barcodes
+guppy_barcoder -i /mnt/ebe/AmpliconSequencingONT/$filenamefastq_guppy_6.3.8_8.2/pass/ -s /mnt/ebe/AmpliconSequencingONT/$filename/fastq_guppy_6.3.8_8.2_barcodes
 
 echo "##########################################"
 echo "#### Using amplicon sorter             ###"
@@ -42,7 +42,7 @@ curl -s -X POST "https://api.telegram.org/bot$bot_token/sendMessage" \
      -d chat_id="$chat_id" \
      -d text="demultiplexing done, starting the amplicon_sorter"
      
-cd fastq_guppy_6.3.8_8.2_barcodes
+cd /mnt/ebe/AmpliconSequencingONT/$filename/fastq_guppy_6.3.8_8.2_barcodes
 
 (for i in {1..96}; do cat $(printf 'barcode%02d\n' $i)/*.fastq > $(printf 'barcode%02d\n' $i)/$(printf 'barcode%02d\n' $i).fastq; python3 amplicon_sorter.py -i $(printf 'barcode%02d\n' $i)/$(printf 'barcode%02d\n' $i).fastq -ho -np 40 -o $(printf 'barcode%02d\n' $i)/$(printf 'barcode%02d\n' $i); python3 amplicon_sorter.py -i $(printf 'barcode%02d\n' $i)/$(printf 'barcode%02d\n' $i).fastq -min 200 -np 40 -o $(printf 'barcode%02d\n' $i)/$(printf 'barcode%02d\n' $i); rm $(printf 'barcode%02d\n' $i)/$(printf 'barcode%02d\n' $i).fastq; done) 
 
