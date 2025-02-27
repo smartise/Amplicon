@@ -20,7 +20,7 @@ curl -s -X POST "https://api.telegram.org/bot$bot_token/sendMessage" \
 
 module load guppy/gpu-6.3.8_linux64
 
-guppy_basecaller -i /mnt/ebe/AmpliconSequencingONT/$filename/fast5 -s /mnt/ebe/AmpliconSequencingONT/$filename/fastq_guppy_6.3.8_8.2 -c dna_r10.4.1_e8.2_400bps_sup.cfg -x auto
+guppy_basecaller -i /mnt/ebe/AmpliconSequencingONT/$filename/fast5 -s /mnt/ebe/AmpliconSequencingONT/$filename/fastq_guppy_6.3.8_8.2 -c dna_r10.4.1_e8.2_400bps_sup.cfg -x auto --do_read_splitting
 
 echo "##########################################"
 echo "#### Barcoding the fastq files         ###"
